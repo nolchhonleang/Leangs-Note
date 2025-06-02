@@ -3,170 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leang Typing Adventure</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Leang's Note</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/css/styles.css">
 </head>
-<body class="theme-light">
-  <header class="bg-gradient-to-r from-purple-300 to-green-200 text-gray-800 py-4 shadow-md">
-    <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center px-4 gap-3">
-      <h1 id="title" class="text-2xl sm:text-3xl font-bold font-comic animate__animated animate__bounceIn">Leang Typing Adventure</h1>
-      <div class="flex items-center gap-4">
-        <span id="usernameDisplay" class="text-sm sm:text-base font-comic bg-green-100 px-3 py-1 rounded-full">Guest</span>
-        <div class="dropdown">
-          <button id="settingsBtn" class="btn bg-white/80 text-gray-800 rounded-full p-2 hover:bg-white transition-colors" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Settings">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end bg-purple-100 text-gray-800 rounded-xl shadow-lg">
-            <li><button id="langEnBtn" class="dropdown-item font-comic">English</button></li>
-            <li><button id="langKhBtn" class="dropdown-item font-noto-khmer">ខ្មែរ</button></li>
-            <li><hr class="dropdown-divider border-gray-300"></li>
-            <li><button id="diffEasyBtn" class="dropdown-item font-comic">Easy</button></li>
-            <li><button id="diffMediumBtn" class="dropdown-item font-comic">Medium</button></li>
-            <li><button id="diffHardBtn" class="dropdown-item font-comic">Hard</button></li>
-            <li><hr class="dropdown-divider border-gray-300"></li>
-            <li><button id="themeLightBtn" class="dropdown-item font-comic">Light</button></li>
-            <li><button id="themeDarkBtn" class="dropdown-item font-comic">Dark</button></li>
-            <li><hr class="dropdown-divider border-gray-300"></li>
-            <li><button id="changeUsernameBtn" class="dropdown-item font-comic">Change Username</button></li>
-          </ul>
+<body>
+  <div class="container my-4">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Leang's Note</h1>
+      <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle dark/light mode">🌙</button>
+    </header>
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="mb-3">
+          <input type="text" id="note-title" class="form-control" placeholder="Note Title" aria-label="Note title">
         </div>
+        <div class="mb-3">
+          <select id="note-category" class="form-select" aria-label="Note category">
+            <option value="General">General</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Ideas">Ideas</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="text" id="note-tags" class="form-control" placeholder="Tags (comma-separated)" aria-label="Note tags">
+        </div>
+        <div class="editor-toolbar mb-2">
+          <button id="bold-btn" class="btn btn-outline-primary btn-sm" aria-label="Bold text">B</button>
+          <button id="italic-btn" class="btn btn-outline-primary btn-sm" aria-label="Italic text">I</button>
+          <button id="bullet-btn" class="btn btn-outline-primary btn-sm" aria-label="Bullet list">•</button>
+        </div>
+        <div id="note-content" contenteditable="true" class="form-control editor" aria-label="Note content"></div>
+        <div class="d-flex gap-2 mt-3">
+          <button id="add-note" class="btn btn-primary">Add Note</button>
+          <button id="export-notes" class="btn btn-outline-success">Export Notes</button>
+          <input type="file" id="import-notes" class="d-none" accept=".json" aria-label="Import notes">
+          <button id="import-btn" class="btn btn-outline-info">Import Notes</button>
+        </div>
+        <div id="form-error" class="alert alert-danger mt-3 d-none" role="alert"></div>
       </div>
     </div>
-  </header>
-
-  <main class="container mx-auto mt-5 py-6 px-4 max-w-3xl">
-    <div class="card game-card shadow-lg bg-white/90 rounded-2xl">
-      <div class="card-body text-center">
-        <p id="instructions" class="text-sm sm:text-base mb-4 text-gray-600 font-comic animate__animated animate__fadeIn">Type the word before the timer runs out!</p>
-        <h2 id="wordDisplay" class="text-3xl sm:text-5xl font-bold font-noto-khmer animate__animated animate__bounceIn mb-4 fun-text" aria-live="polite">Loading...</h2>
-        <input type="text" id="wordInput" class=" w-45 form-control-lg mb-4 rounded-full fun-input mx-auto max-w-md shadow-sm" placeholder="Start typing..." autofocus aria-label="Type the displayed word">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
-          <div class="stat-box bg-purple-50 p-3 rounded-xl shadow-sm">
-            <h5 id="scoreDisplay" class="text-sm sm:text-base font-bold font-comic">Score: 0</h5>
-          </div>
-          <div class="stat-box bg-green-50 p-3 rounded-xl shadow-sm">
-            <h5 id="highScoreDisplay" class="text-sm sm:text-base font-bold font-comic">High Score: 0</h5>
-          </div>
-          <div class="stat-box bg-blue-50 p-3 rounded-xl shadow-sm">
-            <h5 id="timeDisplay" class="text-sm sm:text-base font-bold font-comic">Time: 15</h5>
-          </div>
-          <div class="stat-box bg-yellow-50 p-3 rounded-xl shadow-sm">
-            <h5 id="wpmDisplay" class="text-sm sm:text-base font-bold font-comic">WPM: 0</h5>
-          </div>
-        </div>
-        <div class="flex flex-wrap justify-center gap-3">
-          <button id="restartBtn" class="btn btn-fun btn-success rounded-full px-4 py-2 font-comic">Restart</button>
-          <button id="statsBtn" class="btn btn-fun btn-info rounded-full px-4 py-2 font-comic">Stats</button>
-          <button id="achievementsBtn" class="btn btn-fun btn-primary rounded-full px-4 py-2 font-comic">Achievements</button>
-          <button id="tutorialBtn" class="btn btn-fun btn-secondary rounded-full px-4 py-2 font-comic">Tutorial</button>
-          <button id="resetHighScoreBtn" class="btn btn-fun btn-danger rounded-full px-4 py-2 font-comic">Reset High Score</button>
-        </div>
-      </div>
+    <div class="d-flex gap-3 mb-4 note-controls">
+      <input type="text" id="search-notes" class="form-control" placeholder="Search notes..." aria-label="Search notes">
+      <select id="sort-notes" class="form-select" aria-label="Sort notes">
+        <option value="date-desc">Newest First</option>
+        <option value="date-asc">Oldest First</option>
+        <option value="title-asc">Title A-Z</option>
+        <option value="title-desc">Title Z-A</option>
+        <option value="category">Category</option>
+      </select>
     </div>
-  </main>
-
-  <footer class=" text-primary py-4 mt-7">
-    <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-      <div class="flex items-center gap-3">
-        <label for="soundToggle" class="text-sm font-comic">Sound:</label>
-        <input type="checkbox" id="soundToggle" checked class="h-4 w-4">
-        <input type="range" id="soundVolume" min="0" max="1" step="0.1" value="0.5" class="w-24 accent-purple-400">
-      </div>
-      <p class="text-sm font-comic">Made by: Mr. Nol Chhonleang</p>
-    </div>
-  </footer>
-
-  <!-- Username Modal -->
-  <div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="usernameModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content fun-modal rounded-2xl">
-        <div class="modal-header border-b-2 border-purple-300">
-          <h5 class="modal-title font-comic text-lg" id="usernameModalLabel">Pick Your Name!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p class="font-comic text-sm">Choose a fun name for the typing adventure!</p>
-          <input type="text" id="modalUsernameInput" class="form-control fun-input font-comic rounded-full" placeholder="Your name" aria-label="Username">
-        </div>
-        <div class="modal-footer border-t-2 border-purple-300">
-          <button id="modalSaveUsernameBtn" class="btn btn-fun btn-primary font-comic rounded-full">Save</button>
-        </div>
-      </div>
+    <div id="notes-list" role="list"></div>
+    <div id="undo-notification" class="alert alert-warning d-none" role="alert">
+      Note deleted. <button id="undo-delete" class="btn btn-link">Undo</button>
     </div>
   </div>
-
-  <!-- Stats Modal -->
-  <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content fun-modal rounded-2xl">
-        <div class="modal-header border-b-2 border-purple-300">
-          <h5 class="modal-title font-comic text-lg" id="statsModalLabel">Your Awesome Stats</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <canvas id="statsChart" height="200"></canvas>
-          <p id="statsText" class="mt-4 font-comic text-sm"></p>
-          <button id="exportStatsBtn" class="btn btn-fun btn-outline-primary mt-3 font-comic rounded-full">Save Stats (CSV)</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Game Over Modal -->
-  <div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content fun-modal rounded-2xl">
-        <div class="modal-header border-b-2 border-purple-300">
-          <h5 class="modal-title font-comic text-lg" id="gameOverModalLabel">Game Over!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p id="gameOverText" class="font-comic text-sm"></p>
-          <button id="playAgainBtn" class="btn btn-fun btn-primary font-comic rounded-full">Play Again</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Achievements Modal -->
-  <div class="modal fade" id="achievementsModal" tabindex="-1" aria-labelledby="achievementsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content fun-modal rounded-2xl">
-        <div class="modal-header border-b-2 border-purple-300">
-          <h5 class="modal-title font-comic text-lg" id="achievementsModalLabel">Your Cool Badges</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul id="achievementsList" class="list-group font-comic text-sm"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tutorial Modal -->
-  <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content fun-modal rounded-2xl">
-        <div class="modal-header border-b-2 border-purple-300">
-          <h5 class="modal-title font-comic text-lg" id="tutorialModalLabel">How to Play</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p id="tutorialText" class="font-comic text-sm"></p>
-          <button id="nextTutorialBtn" class=" mt-2 btn btn-fun btn-primary font-comic rounded-full">Next</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="utils.js"></script>
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="src/js/main.js"></script>
 </body>
 </html>
