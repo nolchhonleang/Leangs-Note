@@ -1,0 +1,13 @@
+{
+  "name": "leangs-note",
+  "version": "1.0.0",
+  "description": "A feature-rich note-taking app with JavaScript and Bootstrap",
+  "scripts": {
+    "start": "live-server src",
+    "lint": "eslint src/js/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leang's Note</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container my-4">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Leang's Note</h1>
+      <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle dark/light mode">🌙</button>
+    </header>
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="mb-3">
+          <input type="text" id="note-title" class="form-control" placeholder="Note Title" aria-label="Note title">
+        </div>
+        <div class="mb-3">
+          <select id="note-category" class="form-select" aria-label="Note category">
+            <option value="General">General</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Ideas">Ideas</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="text" id="note-tags" class="form-control" placeholder="Tags (comma-separated)" aria-label="Note tags">
+        </div>
+        <div class="editor-toolbar mb-2">
+          <button id="bold-btn" class="btn btn-outline-primary btn-sm" aria-label="Bold text">B</button>
+          <button id="italic-btn" class="btn btn-outline-primary btn-sm" aria-label="Italic text">I</button>
+          <button id="bullet-btn" class="btn btn-outline-primary btn-sm" aria-label="Bullet list">•</button>
+        </div>
+        <div id="note-content" contenteditable="true" class="form-control editor" aria-label="Note content"></div>
+        <div class="d-flex gap-2 mt-3">
+          <button id="add-note" class="btn btn-primary">Add Note</button>
+          <button id="export-notes" class="btn btn-outline-success">Export Notes</button>
+          <input type="file" id="import-notes" class="d-none" accept=".json" aria-label="Import notes">
+          <button id="import-btn" class="btn btn-outline-info">Import Notes</button>
+        </div>
+        <div id="form-error" class="alert alert-danger mt-3 d-none" role="alert"></div>
+      </div>
+    </div>
+    <div class="d-flex gap-3 mb-4 note-controls">
+      <input type="text" id="search-notes" class="form-control" placeholder="Search notes..." aria-label="Search notes">
+      <select id="sort-notes" class="form-select" aria-label="Sort notes">
+        <option value="date-desc">Newest First</option>
+        <option value="date-asc">Oldest First</option>
+        <option value="title-asc">Title A-Z</option>
+        <option value="title-desc">Title Z-A</option>
+        <option value="category">Category</option>
+      </select>
+    </div>
+    <div id="notes-list" role="list"></div>
+    <div id="undo-notification" class="alert alert-warning d-none" role="alert">
+      Note deleted. <button id="undo-delete" class="btn btn-link">Undo</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
