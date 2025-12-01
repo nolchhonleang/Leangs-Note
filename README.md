@@ -53,3 +53,7 @@ Contributions are welcome! Please open an issue to discuss proposed changes befo
 
 ## License 📄
 This project is licensed under the MIT License.
+
+<img width="1480" height="1011" alt="image" src="https://github.com/user-attachments/assets/8969945a-a6d7-43e5-b481-9066c894309a" />
+
+
